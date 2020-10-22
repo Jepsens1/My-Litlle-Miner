@@ -40,7 +40,7 @@ namespace My_little_Miner
                 Console.WriteLine(smelt.Smelt(player));
                 Thread.Sleep(1000);
                 Console.Clear();
-                MainMenu(player);
+                MainMenu(player)
 
             }
                 
