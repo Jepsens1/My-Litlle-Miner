@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Linq;
+using System.Threading;
 
 namespace My_little_Miner
 {
     class Smeltery
     {
-
+        
         public string SmeltAll(Player player)
         {
             string temp2 = "";
@@ -22,21 +23,26 @@ namespace My_little_Miner
         public string Smelt(Player player)
         { 
             string temp = "";
+            string text;
             
             int userinput = Convert.ToInt32(Console.ReadLine());
             userinput--;
             for (int i = 0; i < player.Backpack.Count; i++)
             {
-                if (userinput == i && player.Backpack[i].Stage == Stage.Raw)
-                {
-                    
-                    player.Backpack[i].Stage = Stage.Refined;
-                    temp = player.Backpack[i].TypeOfMineral.ToString() + player.Backpack[i].Stage.ToString(); 
+                
+                    if (userinput == i && player.Backpack[i].Stage == Stage.Raw)
+                    {
+
+                        player.Backpack[i].Stage = Stage.Refined;
+                        temp = $"you have now refined {player.Backpack[i].TypeOfMineral} to {player.Backpack[i].Stage.ToString() + " " + player.Backpack[i].TypeOfMineral} \nreturning to mainmenu";
 
 
-                }
+                    }
+               
             }
-            return  temp;
+            return temp;
+            
+            
             
         }
        
@@ -46,7 +52,3 @@ namespace My_little_Miner
 
     }
 }
-//loop igennem for at få raw mineraler
-//Change raw minerals to smelted minerals
-//clear raw minerals
-//add smelted minerals to backpack
