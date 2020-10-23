@@ -46,8 +46,6 @@ namespace My_little_Miner
             Health = health;
             Attack = attack;
         }
-
-
-
     }
+    
 }
