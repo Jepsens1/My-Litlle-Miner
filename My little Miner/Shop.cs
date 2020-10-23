@@ -20,51 +20,48 @@ namespace My_little_Miner
             string inventory = "";
             for (int i = 0; i < player.Backpack.Count; i++)
             {
-                inventory += $"{i + 1} {player.Backpack[i].Stage} {player.Backpack[i].TypeOfMineral}\n";
+                inventory += $"{i} {player.Backpack[i].Stage} {player.Backpack[i].TypeOfMineral}\n";
             }
             return inventory;
         }
         public string SellItem(Player player)
         {
-            string item = "";
-            int userinput = Convert.ToInt32(Console.ReadLine());
-           
-                switch (player.Backpack[userinput].TypeOfMineral)
-                {
-                    case MineralRarity.Stone:
-                        player.Money += 10 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    case MineralRarity.Coal:
-                        player.Money += 15 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    case MineralRarity.Iron:
-                        player.Money += 25 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    case MineralRarity.Gold:
-                        player.Money += 35 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    case MineralRarity.Diamond:
-                        player.Money += 60 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                            break;
-                    case MineralRarity.Sapphire:
-                        player.Money += 80 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    case MineralRarity.Ruby:
-                        player.Money += 100 + Calculator(player.Backpack[userinput]);
-                        player.Backpack.RemoveAt(userinput);
-                        break;
-                    
-                        
-                }
-                item = $"You have sold {player.Backpack[userinput].TypeOfMineral}";
             
-            return item;
+            int userinput = Convert.ToInt32(Console.ReadLine());
+
+            switch (player.Backpack[userinput].TypeOfMineral)
+            {
+                case MineralRarity.Stone:
+                    player.Money += 10 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+                case MineralRarity.Coal:
+                    player.Money += 15 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;                    
+                case MineralRarity.Iron:
+                    player.Money += 25 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+                case MineralRarity.Gold:
+                    player.Money += 35 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+                case MineralRarity.Diamond:
+                    player.Money += 60 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+                case MineralRarity.Sapphire:
+                    player.Money += 80 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+                case MineralRarity.Ruby:
+                    player.Money += 100 + Calculator(player.Backpack[userinput]);
+                    player.Backpack.RemoveAt(userinput);
+                    break;
+               
+            }
+            return "Thanks for selling";
         }
         public int Calculator(Mineral mineral)
         {

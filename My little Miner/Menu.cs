@@ -12,15 +12,15 @@ namespace My_little_Miner
         Smeltery smelt = new Smeltery();
         Shop shop = new Shop();
         //Menu Scene
-        
+
         //Start Menu when opening game
         public void MainMenu(Player player)
-        
+
         {
-            Console.WriteLine("My LITTLE MINER" + "\n" + "1. Go to the cave and mine" + "\n" + "2. Open your inventory" + "\n" + "3. Smelt your stuff in the smeltery" + "\n" + "4. Go to Shop");
+            Console.WriteLine($"My LITTLE MINER\n1. Go to the cave and mine\n2. Open your inventory\n3. Smelt your stuff in the smeltery\n4. Go to Shop\n \nCurrent coins earned {player.Money}");
             try
             {
-            int userinput = Convert.ToInt32(Console.ReadLine());
+                int userinput = Convert.ToInt32(Console.ReadLine());
                 if (userinput == 1)
                 {
                     Console.Clear();
@@ -42,13 +42,8 @@ namespace My_little_Miner
                     Console.Clear();
                     Console.WriteLine("Loading inventory");
                     Thread.Sleep(1000);
-                    Console.WriteLine(smelt.SmeltAll(player));
-                    Console.WriteLine("Type what Mineral you want to refine");
-                    Console.WriteLine(smelt.Smelt(player));
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                  
-                    MainMenu(player);
+                    Smelting(player);
+
                 }
                 else if (userinput == 4)
                 {
@@ -62,7 +57,7 @@ namespace My_little_Miner
                 else if (userinput > 4)
                 {
                     throw new Exception();
-                    
+
                 }
 
             }
@@ -74,17 +69,17 @@ namespace My_little_Miner
                 Console.Clear();
                 MainMenu(player);
             }
-           
+
         }
         //Mining Scene
         public void Mining(Player player)
         {
             while (true)
             {
-                
-               
+
+
                 Console.Clear();
-                    Console.WriteLine("1. Keep Mining" + "\n" + "2. Return To Villages" + "\n" + "You got a new mineral " + mine.Mining(player));
+                Console.WriteLine("1. Keep Mining" + "\n" + "2. Return To Villages" + "\n" + "You got a new mineral " + mine.Mining(player));
                 try
                 {
                     int userinput = Convert.ToInt32(Console.ReadLine());
@@ -110,7 +105,7 @@ namespace My_little_Miner
                     Console.Clear();
                     MainMenu(player);
                 }
-                
+
             }
         }
         //Inventory menu
@@ -146,40 +141,48 @@ namespace My_little_Miner
 
             }
         }
-      public void Shop(Player player)
+        public void Shop(Player player)
         {
-            while (true)
+
+            try
             {
-                try
-                {
-                    Console.WriteLine(shop.ShopInventory(player));
-                    Console.WriteLine("Type what Mineral you want to sell");
-                    Console.WriteLine(shop.SellItem(player));
-                    Thread.Sleep(2000);
-                    Console.Clear();
-                    MainMenu(player);
-                    int userinput = Convert.ToInt32(Console.ReadLine());
-                    if (userinput == 0)
-                    {
+                Console.WriteLine(shop.ShopInventory(player));
+                Console.WriteLine("Type what Mineral you want to sell");
+                Console.WriteLine(shop.SellItem(player));
+                Thread.Sleep(2000);
+                Console.Clear();
+                MainMenu(player);
 
-                        MainMenu(player);
-                    }
-                }
-                catch (Exception)
-                {
-
-                    Console.WriteLine("Wrong input returning to mainmenu");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    MainMenu(player);
-                }
-                
 
             }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Wrong input returning to mainmenu");
+                Thread.Sleep(1000);
+                Console.Clear();
+                MainMenu(player);
+            }
+
+
         }
-        
+
+        public void Smelting(Player player)
+        {
+            
+                Console.WriteLine(smelt.SmeltAll(player));
+                Console.WriteLine("Type what Mineral you want to refine");
+                Console.WriteLine(smelt.Smelt(player));
+                Thread.Sleep(3000);
+                Console.Clear();
+
+                MainMenu(player);
+
+            
+           
 
 
 
+        }
     }
 }

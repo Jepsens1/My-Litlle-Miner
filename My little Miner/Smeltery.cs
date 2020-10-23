@@ -30,6 +30,7 @@ namespace My_little_Miner
             for (int i = 0; i < player.Backpack.Count; i++)
             {
                 
+
                     if (userinput == i && player.Backpack[i].Stage == Stage.Raw)
                     {
 
@@ -38,6 +39,12 @@ namespace My_little_Miner
 
 
                     }
+                    else if (userinput > i)
+                    {
+                        temp = "Wrong input returning to MainMenu";
+                    }
+                
+                
                
             }
             return temp;
