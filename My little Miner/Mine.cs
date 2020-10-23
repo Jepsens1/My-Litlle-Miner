@@ -78,7 +78,7 @@ namespace My_little_Miner
                 //Adding mineral to backpack
                 player.Backpack.Add(new Mineral(rarity));
                 temp = FormatEnum(rarity);
-            Console.WriteLine(player.ShowInventory());
+            
                 
                 return temp;
             }

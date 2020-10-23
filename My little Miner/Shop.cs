@@ -28,8 +28,7 @@ namespace My_little_Miner
         {
             string item = "";
             int userinput = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < player.Backpack.Count; i++)
-            {
+           
                 switch (player.Backpack[userinput].TypeOfMineral)
                 {
                     case MineralRarity.Stone:
@@ -64,7 +63,7 @@ namespace My_little_Miner
                         
                 }
                 item = $"You have sold {player.Backpack[userinput].TypeOfMineral}";
-            }
+            
             return item;
         }
         public int Calculator(Mineral mineral)
