@@ -30,6 +30,14 @@ namespace My_little_Miner
             get { return backpack; }
             set { backpack = value; }
         }
+        private int money;
+
+        public int Money
+        {
+            get { return money; }
+            set { money = value; }
+        }
+
         //Constructor
         public Player(string name, Pickaxe myPickaxe)
         {
@@ -37,6 +45,7 @@ namespace My_little_Miner
            
             MyPickaxe = myPickaxe;
             Backpack = new List<Mineral>();
+            Money = 0;
         }
         //Method to show Inventory from when you were mining
       public string ShowInventory()

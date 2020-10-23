@@ -23,7 +23,7 @@ namespace My_little_Miner
         public string Smelt(Player player)
         { 
             string temp = "";
-            string text;
+          
             
             int userinput = Convert.ToInt32(Console.ReadLine());
             userinput--;
