@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace My_little_Miner
 {
@@ -26,7 +27,7 @@ namespace My_little_Miner
         }
         public string SellItem(Player player)
         {
-            
+
             int userinput = Convert.ToInt32(Console.ReadLine());
 
             switch (player.Backpack[userinput].TypeOfMineral)
@@ -38,7 +39,7 @@ namespace My_little_Miner
                 case MineralRarity.Coal:
                     player.Money += 15 + Calculator(player.Backpack[userinput]);
                     player.Backpack.RemoveAt(userinput);
-                    break;                    
+                    break;
                 case MineralRarity.Iron:
                     player.Money += 25 + Calculator(player.Backpack[userinput]);
                     player.Backpack.RemoveAt(userinput);
@@ -59,9 +60,67 @@ namespace My_little_Miner
                     player.Money += 100 + Calculator(player.Backpack[userinput]);
                     player.Backpack.RemoveAt(userinput);
                     break;
-               
+
             }
             return "Thanks for selling";
+        }
+        public string PickaxeList(Player player)
+        {
+            string list = "";
+            Type enumtype = typeof(PickaxeRarity);
+            string[] EnumName = enumtype.GetEnumNames();
+            for (int i = 0; i < EnumName.Length; i++)
+            {
+                list += $"{i} Pickaxe {EnumName[i]}\n";
+            }
+            return list;
+        }
+        public string BuyPickaxe(Player player)
+        {
+            string item = "";
+
+            string userinput = Console.ReadLine();
+            switch (userinput)
+            {
+                case "0":
+                    player.Money -= 20;
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Wood;
+                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
+                    Thread.Sleep(1000);
+                    break;
+                case "1":
+                    player.Money -= 60;
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Stone;
+                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
+                    Thread.Sleep(1000);
+                    break;
+                case "2":
+                    player.Money -= 150;
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Iron;
+                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
+                    Thread.Sleep(1000);
+                    break;
+                case "3":
+                    player.Money -= 200;
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Gold;
+                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
+                    Thread.Sleep(1000);
+                    break;
+                case "4":
+                    player.Money -= 300;
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Diamond;
+                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
+                    Thread.Sleep(2000);
+                    break;
+                default:
+                    item = "Wrong input";
+                    Thread.Sleep(1000);
+                    break;
+            }
+
+            return item;
+
+
         }
         public int Calculator(Mineral mineral)
         {

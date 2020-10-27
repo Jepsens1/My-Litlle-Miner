@@ -17,7 +17,7 @@ namespace My_little_Miner
         public void MainMenu(Player player)
 
         {
-            Console.WriteLine($"My LITTLE MINER\n1. Go to the cave and mine\n2. Open your inventory\n3. Smelt your stuff in the smeltery\n4. Go to Shop\n \nCurrent coins earned {player.Money}");
+            Console.WriteLine($"My LITTLE MINER\n1. Go to the cave and mine\n2. Open your inventory\n3. Smelt your stuff in the smeltery\n4. Go to Shop\n \nPlayername {player.Name}\nPickaxe {player.MyPickaxe.TypeOfPickaxe}\nCurrent coins earned {player.Money}\nHealth {player.Health}");
             string userinput = Console.ReadLine();
             switch (userinput)
             {
@@ -42,7 +42,7 @@ namespace My_little_Miner
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("Loading inventory");
+
                     Thread.Sleep(1000);
                     Shop(player);
                     break;
@@ -53,7 +53,7 @@ namespace My_little_Miner
                     Console.Clear();
                     MainMenu(player);
                     break;
-                    
+
             }
 
 
@@ -68,30 +68,23 @@ namespace My_little_Miner
 
                 Console.Clear();
                 Console.WriteLine("1. Keep Mining" + "\n" + "2. Return To Villages" + "\n" + "You got a new mineral " + mine.Mining(player));
-                try
+                string userinput = Console.ReadLine();
+                switch (userinput)
                 {
-                    int userinput = Convert.ToInt32(Console.ReadLine());
-                    if (userinput == 2)
-                    {
+                    case "1":
+                        mine.Mining(player);
+                        break;
+                    case "2":
                         Console.WriteLine("Returning to villages...");
                         Thread.Sleep(1000);
                         Console.Clear();
                         MainMenu(player);
-                    }
-                    else if (userinput > 2)
-                    {
-                        Console.WriteLine("Wrong input, exiting to mainmenu");
+                        break;
+                  
+                    default:
+                        Console.WriteLine("Wrong input");
                         Thread.Sleep(1000);
-                        Console.Clear();
-                        MainMenu(player);
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Wrong input, exiting to mainmenu");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    MainMenu(player);
+                        break;
                 }
 
             }
@@ -132,26 +125,45 @@ namespace My_little_Miner
         public void Shop(Player player)
         {
 
-            try
+            Console.WriteLine("Welcome to the Shop");
+            Console.WriteLine("1. Buy new pickaxe");
+            Console.WriteLine("2. Sell item");
+            Console.WriteLine("3. Go back to mainmenu");
+            string userinput = Console.ReadLine();
+            switch (userinput)
             {
-                Console.WriteLine(shop.ShopInventory(player));
-                Console.WriteLine("Type what Mineral you want to sell");
-                Console.WriteLine(shop.SellItem(player));
-                Thread.Sleep(2000);
-                Console.Clear();
-                MainMenu(player);
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine(shop.PickaxeList(player));
+                    Console.WriteLine("Choose what Pickaxe you to buy");
+                   
+                    Console.WriteLine(shop.BuyPickaxe(player));
+                    Console.Clear();
+                    MainMenu(player);
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine(shop.ShopInventory(player));
+                    Console.WriteLine("Type what Mineral you want to sell");
+                    Console.WriteLine(shop.SellItem(player));
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    MainMenu(player);
+                    break;
+                case "3":
+                    Console.Clear();
+
+                    MainMenu(player);
+                    break;
 
 
+                default:
+                    Console.WriteLine("Wrong input");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Shop(player);
+                    break;
             }
-            catch (Exception)
-            {
-
-                Console.WriteLine("Wrong input returning to mainmenu");
-                Thread.Sleep(1000);
-                Console.Clear();
-                MainMenu(player);
-            }
-
 
         }
 
@@ -163,7 +175,7 @@ namespace My_little_Miner
             Console.WriteLine(smelt.Smelt(player));
             Thread.Sleep(3000);
             Console.Clear();
-
+            
             MainMenu(player);
 
 

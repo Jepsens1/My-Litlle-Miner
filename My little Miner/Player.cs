@@ -37,6 +37,14 @@ namespace My_little_Miner
             get { return money; }
             set { money = value; }
         }
+        private int health;
+
+        public int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
+
 
         //Constructor
         public Player(string name, Pickaxe myPickaxe)
@@ -46,8 +54,10 @@ namespace My_little_Miner
             MyPickaxe = myPickaxe;
             Backpack = new List<Mineral>();
             Money = 0;
+            Health = 100;
         }
         //Method to show Inventory from when you were mining
+
       public string ShowInventory()
         {
             string temp = "";
