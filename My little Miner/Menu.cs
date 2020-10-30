@@ -76,6 +76,7 @@ namespace My_little_Miner
                         break;
                     case "2":
                         Console.WriteLine("Returning to villages...");
+                        player.Health--;
                         Thread.Sleep(1000);
                         Console.Clear();
                         MainMenu(player);
@@ -128,17 +129,19 @@ namespace My_little_Miner
             Console.WriteLine("Welcome to the Shop");
             Console.WriteLine("1. Buy new pickaxe");
             Console.WriteLine("2. Sell item");
-            Console.WriteLine("3. Go back to mainmenu");
+            Console.WriteLine("3. Buy food");
+            Console.WriteLine("4. MainMenu");
             string userinput = Console.ReadLine();
             switch (userinput)
             {
                 case "1":
                     Console.Clear();
+                    Console.WriteLine($"Pickaxe Wood = 20 Coins\nPickaxe Stone = 60 Coins\nPickaxe Iron = 150 Coins\nPickaxe Gold = 200 Coins\nPickaxe Diamond = 300 Coins\n");
                     Console.WriteLine(shop.PickaxeList(player));
                     Console.WriteLine("Choose what Pickaxe you to buy");
-                   
                     Console.WriteLine(shop.BuyPickaxe(player));
-                    Console.Clear();
+                   
+                    Console.Clear(); 
                     MainMenu(player);
                     break;
                 case "2":
@@ -152,7 +155,17 @@ namespace My_little_Miner
                     break;
                 case "3":
                     Console.Clear();
+                    Console.WriteLine("Choose how many you want");
+                    Console.WriteLine($"1 health = 2 coins Press 1\n10 health = 10 coins Press 2\n50 health = 30 coins Press 3\n100 health = 70 coins Press 4");
+                    Console.WriteLine(shop.BuyFood(player));
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    MainMenu(player);
 
+                    
+                    break;
+                case "4":
+                    Console.Clear();
                     MainMenu(player);
                     break;
 

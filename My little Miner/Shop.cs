@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Text;
 using System.Threading;
 
@@ -77,50 +78,99 @@ namespace My_little_Miner
         }
         public string BuyPickaxe(Player player)
         {
-            string item = "";
 
             string userinput = Console.ReadLine();
-            switch (userinput)
+            string item = " ";
+            try
             {
-                case "0":
+                if (userinput == "0" && player.Money >= 20)
+                {
                     player.Money -= 20;
+                    item += $"You have now got Pickaxe {PickaxeRarity.Wood}";
                     player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Wood;
-                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
-                    Thread.Sleep(1000);
-                    break;
-                case "1":
-                    player.Money -= 60;
-                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Stone;
-                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
-                    Thread.Sleep(1000);
-                    break;
-                case "2":
-                    player.Money -= 150;
-                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Iron;
-                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
-                    Thread.Sleep(1000);
-                    break;
-                case "3":
-                    player.Money -= 200;
-                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Gold;
-                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
-                    Thread.Sleep(1000);
-                    break;
-                case "4":
-                    player.Money -= 300;
-                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Diamond;
-                    item = $"You have now got {player.MyPickaxe.TypeOfPickaxe}";
-                    Thread.Sleep(2000);
-                    break;
-                default:
-                    item = "Wrong input";
-                    Thread.Sleep(1000);
-                    break;
-            }
+                   
 
+                }
+                else if (userinput == "1" && player.Money >= 60)
+                {
+                    player.Money -= 60;
+                    item += $"You have now got Pickaxe {PickaxeRarity.Stone}";
+                    Thread.Sleep(1000);
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Stone;
+                   
+                }
+                else if (userinput == "2" && player.Money >= 150)
+                {
+                    player.Money -= 150;
+                    item += $"You have now got Pickaxe {PickaxeRarity.Iron}";
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Iron;
+
+                   
+                }
+                else if (userinput == "3" && player.Money >= 200)
+                {
+                    player.Money -= 200;
+                    item += $"You have now got Pickaxe {PickaxeRarity.Gold}";
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Gold;
+                    
+                }
+                else if (userinput == "4" && player.Money >= 300)
+                {
+                    player.Money -= 300;
+                    item += $"You have now got Pickaxe {PickaxeRarity.Diamond}";
+                    player.MyPickaxe.TypeOfPickaxe = PickaxeRarity.Diamond;
+                    
+                }
+                else
+                {
+                    item += "You dont have enough money";
+
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Wrong input");
+                
+            }
             return item;
 
-
+        }
+        public string BuyFood(Player player)
+        {
+            
+            string userinput = Console.ReadLine();
+            string food = "";
+            if (userinput == "1" && player.Money >= 2)
+            {
+                player.Health++;
+                player.Money -= 2;
+                food = "You got 1 plus health";
+            }
+            else if (userinput == "2" && player.Money >= 10)
+            {
+                player.Health += 10;
+                player.Money -= 10;
+                food = "You got 10 plus health";
+            }
+            else if (userinput == "3" && player.Money >= 30)
+            {
+                player.Health += 50;
+                player.Money -= 30;
+                food = "You got 50 plus health";
+            }
+            else if (userinput == "4" && player.Money >= 70)
+            {
+                player.Health += 10;
+                player.Money -= 70;
+                food = "You got 100 plus health";
+            }
+            else
+            {
+                food = "Wrong input";
+            }
+           
+            return  food;
         }
         public int Calculator(Mineral mineral)
         {

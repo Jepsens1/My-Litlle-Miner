@@ -55,7 +55,7 @@ namespace My_little_Miner
                 temp = PickaxeFortune(player, MineralRarity.Ruby, temp);
                 return temp;
             }
-            player.Health -= 1;
+           
             return null;
 
         }
