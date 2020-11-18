@@ -17,6 +17,12 @@ namespace My_little_Miner
         public void MainMenu(Player player)
 
         {
+            if (player.Health == 0)
+            {
+                Console.WriteLine("You died :( you ran out of health");
+                Thread.Sleep(2000);
+                System.Environment.Exit(0);
+            }
             Console.WriteLine($"My LITTLE MINER\n1. Go to the cave and mine\n2. Open your inventory\n3. Smelt your stuff in the smeltery\n4. Go to Shop\n \nPlayername {player.Name}\nPickaxe {player.MyPickaxe.TypeOfPickaxe}\nCurrent coins earned {player.Money}\nHealth {player.Health}");
             string userinput = Console.ReadLine();
             switch (userinput)

@@ -54,7 +54,7 @@ namespace My_little_Miner
             MyPickaxe = myPickaxe;
             Backpack = new List<Mineral>();
             Money = 0;
-            Health = 100;
+            Health = 50;
         }
         //Method to show Inventory from when you were mining
 
